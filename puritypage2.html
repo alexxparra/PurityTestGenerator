@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<form action="/action_page.php">
+  <center><label for="Title" style="font-family:tahoma"><b><center>Your Test Title:</center></b>
+  <input type="text" id="title" name="title"> 
+  <br><br>
+  <label for="preText" style="font-family:tahoma;"><b>Pre-Text:</b></label>
+  <br>
+  <label for="preText" style="font-family:Georgia;"><small>Enter some words the test taker will see before taking the test:</small></label>
+  <br>
+  <textarea id="preTextbox" name="preTextbox" rows="4" cols="50"></textarea>
+  <br><br>
+  <label for="numberOfQuestions" style="font-family:tahoma;"><b>Number of Questions:</b></label>
+  <input type="text" id="numQuestions" name="numQuestions"><br><br>
+  <input type="button" value="Submit"><br><br><br>
+</form>
+<form action="/action_page.php">
+  <label for="questionOne" style="font-family:Georgia;">Question 1:</label>
+  <input type="text" id="questionOne" name="questionOne">
+  <br>
+  <p style="font-family:georgia;"><small>*Add Answers & Indicate the correct answer by selecting the checkbox*</small></p>
+  <label for="answerChoices" style="font-family:georgia;">Answer Choice 1:</label>
+  <input type="text" id="answerChoices" name="answerChoices">
+  <input type="checkbox">
+  <br><br> 
+  <label for="answerChoices" style="font-family:georgia;">Answer Choice 2:</label>
+  <input type="text" id="answerChoices" name="answerChoices">
+  <input type="checkbox">
+  <br><br> 
+  <input type="button" value="Add Answer Choice">
+  <input type="button" value="Delete Answer Choice">
+  <br><br>
+  <label for="result" style="font-family:tahoma;"><b>Feedback for Test Results:</b></label>
+  <br>
+  <label for="result" style="font-family:georgia;"><small>Example: You are 75% proficient in English Grammar</small></label>
+  <br><br>
+  <label for="result" style="font-family:georgia;">You are 75%...</label>
+  <br>
+   <textarea id="feedbackText" name="feedbackText" rows="4" cols="50"></textarea>
+  <br><br><br>
+  <input type="button" value="Generate Your Test!">
+</form>
+</html>
