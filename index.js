@@ -10,3 +10,5 @@ app.get('/', function (req, res) {
 });
  
 app.listen(3000);
+console.log('Server started at http://localhost:3000');
+console.log('CTRL + C to stop the server.');
