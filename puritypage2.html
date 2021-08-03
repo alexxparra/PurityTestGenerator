@@ -1,17 +1,80 @@
 <!DOCTYPE html>
 <form action="/helloWorld" method="POST">
   <center><label for="Title" style="font-family:tahoma"><b><center>Your Test Title:</center></b>
-  <input type="text" id="title" name="title"> 
-  <br><br>
-  <label for="preText" style="font-family:tahoma;"><b>Pre-Text:</b></label>
-  <br>
-  <label for="preText" style="font-family:Georgia;"><small>Enter some words the test taker will see before taking the test:</small></label>
-  <br>
-  <textarea id="preTextbox" name="preTextbox" rows="4" cols="50"></textarea>
-  <br><br>
-  <label for="numberOfQuestions" style="font-family:tahoma;"><b>Number of Questions:</b></label>
-  <input type="text" id="numQuestions" name="numQuestions"><br><br>
-  <input type="submit" value="Submit"><br><br><br>
+    <input type="text" id="title" name="title">
+    <br><br>
+    <label for="preText" style="font-family:tahoma;"><b>Pre-Text:</b></label>
+    <br>
+    <label for="preText" style="font-family:Georgia;"><small>Enter some words the test taker will see before taking the test:</small></label>
+    <br>
+    <textarea id="preTextbox" name="preTextbox" rows="4" cols="50"></textarea>
+    <br><br>
+    <label for="numberOfQuestions" style="font-family:tahoma;"><b>Number of Questions:</b></label>
+    <input type="text" id="question" name="question"><br><br>
+    <a href="#" id="filldetails" onclick="addQuestions()">Submit</a>
+    <script type='text/javascript'>
+      function addQuestions()
+      {
+        // Number of inputs to create
+        var number = document.getElementById("question").value;
+
+        // Clear previous contents of the container
+        /*while (container.hasChildNodes())
+        {
+            container.removeChild(container.lastChild);
+        }*/
+
+        // Container <div> where dynamic content will be placed
+        var container = document.getElementById("container");
+        for (i=0;i<number;i++)
+        {
+          // Append a node with a random text
+          container.appendChild(document.createElement("br"));
+          container.appendChild(document.createTextNode("Question " + (i+1) + ": "));
+
+          // Create an <input> element, set its type and name attributes
+          var input = document.createElement("input");
+          input.type = "text";
+          input.name = "question" + i;
+
+          // Create an input element for New Question
+          var newQuestion = document.createElement("input");
+          newQuestion.setAttribute("type", "text");
+          newQuestion.setAttribute("name", "New Question" + i);
+          newQuestion.setAttribute("placeholder", "New Question");
+
+          // Create an input element for Answer Choice
+          var answerChoice = document.createElement("input");
+          answerChoice.setAttribute("type", "text");
+          answerChoice.setAttribute("name", "AnswerChoice" + i);
+          answerChoice.setAttribute("placeholder", "Answer Choice");
+
+          //Create a button element for add answer choice
+          var addAnswer = document.createElement("button");
+          addAnswer.setAttribute("type", "text");
+          addAnswer.setAttribute("name", "AddAnswerChoice");
+          addAnswer.setAttribute("placeholder", "Add Answer Choice");
+          addAnswer.setAttribute("style","width:500px");
+          addAnswer.setAttribute("style","height:10px");
+
+
+          container.appendChild(newQuestion);
+          container.appendChild(document.createElement("br"));
+          container.appendChild(document.createElement("br"));
+          container.appendChild(answerChoice);
+          container.appendChild(document.createElement("br"));
+          container.appendChild(addAnswer);
+          container.appendChild(document.createElement("br"));
+          container.appendChild(document.createElement("br"));
+          container.appendChild(document.createElement("br"));
+        }
+      }
+      //function addAnswerChoice()
+    </script>
+
+    <div id="container"/>
+
+    <br><br><br>
 </form>
 <form action="/helloWord" method="POST">
   <label for="questionOne" style="font-family:Georgia;">Question 1:</label>
@@ -21,11 +84,11 @@
   <label for="answerChoices" style="font-family:georgia;">Answer Choice 1:</label>
   <input type="text" id="answerChoices" name="answerChoices">
   <input type="checkbox">
-  <br><br> 
+  <br><br>
   <label for="answerChoices" style="font-family:georgia;">Answer Choice 2:</label>
   <input type="text" id="answerChoices" name="answerChoices">
   <input type="checkbox">
-  <br><br> 
+  <br><br>
   <input type="button" value="Add Answer Choice">
   <input type="button" value="Delete Answer Choice">
   <br><br>
@@ -35,7 +98,7 @@
   <br><br>
   <label for="result" style="font-family:georgia;">You are 75%...</label>
   <br>
-   <textarea id="feedbackText" name="feedbackText" rows="4" cols="50"></textarea>
+  <textarea id="feedbackText" name="feedbackText" rows="4" cols="50"></textarea>
   <br><br><br>
   <input type="button" value="Generate Your Test!">
 </form>
