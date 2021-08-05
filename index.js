@@ -17,14 +17,15 @@ app.get('/', (req, res) => {
 app.post("/createForm",(req, res) => {
     console.log(req.body);
 
-// let people = ['geddy', 'neil', 'alex'];
-// let html = ejs.render('<%= people.join(", "); %>', {people: people});
-
     for (question in req.body["questions[]"]) {
         console.log(req.body["questions[]"][question]);
     }
     // This following line is how we use a .ejs file to render dynamic data we pass in.
-    ejs.renderFile('./views/purityreturnform.ejs', {questions: req.body["questions[]"]}, {}, (err, str) => {
+    ejs.renderFile('./views/purityreturnform.ejs', {
+        questions: req.body["questions[]"],
+        feedbackText: req.body["feedbackText"],
+        title: req.body.title
+    }, {}, (err, str) => {
         res.send(str);
     });
 });
@@ -50,7 +51,12 @@ app.post('/results', function (req, res) {
     var allAnswers = req.body["questionAnswer[]"];
     var checkedNumber = allAnswers.length;
     var resultPercentage = ((checkedNumber / totalQuestions) * 100);
-    res.send("You got " + resultPercentage + "% correct.");
+    ejs.renderFile('./views/purityreturnresults.ejs', {
+        percentage: resultPercentage,
+        finalText: "You are 100% airbender."
+    }, {}, (err, str) => {
+        res.send(str);
+    });
 });
 
 app.get('/results', function (req, res) {
