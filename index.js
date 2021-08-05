@@ -39,6 +39,7 @@ app.post("/helloWorld", (req, res) => {
     res.send(req.body);
 });
 
+
 app.get('/yourForm', function (req, res) {
     res.sendFile(__dirname + "/purityreturnform.html");
 });
@@ -48,7 +49,8 @@ app.post('/results', function (req, res) {
     var totalQuestions = parseInt(req.body.totalQuestions);
     var allAnswers = req.body["questionAnswer[]"];
     var checkedNumber = allAnswers.length;
-    res.send("You got " + (checkedNumber / totalQuestions) + "% correct.");
+    var resultPercentage = ((checkedNumber / totalQuestions) * 100);
+    res.send("You got " + resultPercentage + "% correct.");
 });
 
 app.get('/results', function (req, res) {
