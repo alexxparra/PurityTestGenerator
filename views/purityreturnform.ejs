@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <form action="/results" method="POST">
-    <center><label for="Title" style="font-family:tahoma"><b><center>Your Test Title</center></b>
+    <center><label for="Title" style="font-family:tahoma"><b><center><%= title %></center></b>
         <br><br>
-       <label for="preText" style="font-family:tahoma;"><b>Pre-Text</b></label>
+       <label for="preText" style="font-family:tahoma;"><b><%= preText %></b></label>
         <br><br>
        
         <% var totalQuestions = 0; %>

@@ -21,10 +21,12 @@ app.post("/createForm",(req, res) => {
         console.log(req.body["questions[]"][question]);
     }
     // This following line is how we use a .ejs file to render dynamic data we pass in.
-    ejs.renderFile('./views/purityreturnform.ejs', {
+    ejs.renderFile('./views/purityreturnform.ejs',
+    {
         questions: req.body["questions[]"],
         feedbackText: req.body["feedbackText"],
-        title: req.body.title
+        title: req.body.title,
+        preText: req.body.preTextbox
     }, {}, (err, str) => {
         res.send(str);
     });
@@ -45,15 +47,19 @@ app.get('/yourForm', function (req, res) {
     res.sendFile(__dirname + "/purityreturnform.html");
 });
 
-app.post('/results', function (req, res) {
+app.post('/results', function (req, res)
+{
     console.log(req.body);
     var totalQuestions = parseInt(req.body.totalQuestions);
     var allAnswers = req.body["questionAnswer[]"];
     var checkedNumber = allAnswers.length;
     var resultPercentage = ((checkedNumber / totalQuestions) * 100);
-    ejs.renderFile('./views/purityreturnresults.ejs', {
-        percentage: resultPercentage,
-        finalText: "You are 100% airbender."
+    var feedbackText = req.body["feedbackText"];
+    ejs.renderFile('./views/purityreturnresults.ejs',
+    {
+        //percentage: resultPercentage;
+        title: req.body.title,
+        finalText: "You are " + resultPercentage + "% " + feedbackText
     }, {}, (err, str) => {
         res.send(str);
     });
